@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bdaygreetingsz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Staatliches&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jersey+20&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Staatliches&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="visual.css">
+  
+</head>
+
+<body>
+  <header>
+    <h1 class="happy">HAPPY</h1>
+    <h1 class="birthday">☆BIRTHDAY☆</h1>
+  </header>
+  <button class="name" id="hugeButton">To My Beloved Irish yiiie
+  </button>
+
+  <div class="counter" id="counter">Click your Name</div>
+  <div class="surprise-message" id="surpriseMessage">🎉SURPRISE!🎂</div>
+  </div>
+
+  <script>
+    // Variables
+    const button = document.getElementById('hugeButton');
+    const counterDisplay = document.getElementById('counter');
+    const surpriseMessage = document.getElementById('surpriseMessage');
+    let clickCount = 0;
+
+    // Hide surprise message initially
+    surpriseMessage.style.display = 'none';
+
+    // Custom letter - edit this text as you like
+    const customLetter = `
+    <h2 style="font-family: 'Montserrat', cursive; color: #ff69b4; text-align:center;">Gurang kana T-T, WELCOMEEE TO LEGALITY !!! AHHHHHHHH,</h2>
+    <p style="font-family: 'Montserrat', cursive; font-size: 1.2rem; color: white; text-align:center; max-width: 400px; margin: 0 auto;">
+      Ohhh my beloveeedd soafferr prettyyyy Irish, welcome to the legality world kung saan pwede ka nang ikulong 😭 kiddinggg aside, sorry for forgetting your birthday T-T pero atleasttt THANK YOU LORD, MARUNONG NA KO MAG CODE!!! HAHAHAH 😂
+
+Thank you for being my loveeyylovely friend, kahit ako mas matanda sa’tin, nagmukha akong bata (tangkad mo kasi eh 😭). You’re such a blessing, Irish! Continue to grow with grace and keep that radiant joy that lights up everyone around you.
+
+As the Bible says in Proverbs 31:25, “She is clothed with strength and dignity, and she laughs without fear of the future.” 💖
+
+Stay faithful, stay funny, and stay the tall legend that you are. Love you in Christ mwa mwapppsz
+<b> - IT'SZ ME ^-^ </b>
+    </p>
+  `;
+
+    // Create container for balloons
+    const balloonContainer = document.createElement('div');
+    balloonContainer.style.position = 'fixed';
+    balloonContainer.style.top = '0';
+    balloonContainer.style.left = '0';
+    balloonContainer.style.width = '100%';
+    balloonContainer.style.height = '100%';
+    balloonContainer.style.pointerEvents = 'none';
+    balloonContainer.style.overflow = 'visible';
+    balloonContainer.style.zIndex = '9999';
+    document.body.appendChild(balloonContainer);
+
+    // Balloon images URLs (cute balloons)
+    const balloonImages = [
+      ,
+      'https://i.pinimg.com/736x/9d/2e/68/9d2e684a7bcbd6537a1dcc6f41918077.jpg',
+      'https://i.pinimg.com/736x/9d/2e/68/9d2e684a7bcbd6537a1dcc6f41918077.jpg',
+      'https://i.pinimg.com/736x/9d/2e/68/9d2e684a7bcbd6537a1dcc6f41918077.jpg',
+      'https://i.pinimg.com/736x/9d/2e/68/9d2e684a7bcbd6537a1dcc6f41918077.jpg',
+      'https://i.pinimg.com/736x/9d/2e/68/9d2e684a7bcbd6537a1dcc6f41918077.jpg',
+      'https://i.pinimg.com/736x/9d/2e/68/9d2e684a7bcbd6537a1dcc6f41918077.jpg',
+      'https://i.pinimg.com/736x/9d/2e/68/9d2e684a7bcbd6537a1dcc6f41918077.jpg',
+      'https://i.pinimg.com/736x/9d/2e/68/9d2e684a7bcbd6537a1dcc6f41918077.jpg',
+    ];
+
+    // Cake images URLs (cute cakes)
+    const cakeImages = [
+      'https://i.pinimg.com/1200x/05/fe/05/05fe05d02b72f66102f5a5475551102c.jpg', // Replace with your cake image URLs
+      'https://i.pinimg.com/1200x/05/fe/05/05fe05d02b72f66102f5a5475551102c.jpg'
+    ];
+
+    // Birthday images URLs (cute birthday icons)
+    const birthdayImages = [
+      'https://i.pinimg.com/1200x/ec/5f/8a/ec5f8ac529760528d929a8204d46f01a.jpg' // Replace with your birthday image URLs
+    ];
+
+    // Confetti function
+    function createConfetti() {
+      const confettiColors = ['#ff0a54', '#ff477e', '#ff85a1', '#fbb1b1', '#f9bec7', '#f7cad0'];
+      const confettiCount = 30;
+
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.width = '8px';
+        confetti.style.height = '8px';
+        confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        confetti.style.top = Math.random() * window.innerHeight + 'px';
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.opacity = '0.9';
+        confetti.style.borderRadius = '50%';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.zIndex = '10000';
+        confetti.style.animation = `confetti-fall ${2 + Math.random() * 3}s linear forwards`;
+        confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+
+        document.body.appendChild(confetti);
+
+        // Remove confetti after animation
+        confetti.addEventListener('animationend', () => {
+          confetti.remove();
+        });
+      }
+    }
+
+    // Balloon function
+    function createBalloon() {
+      const balloon = document.createElement('img');
+      balloon.src = balloonImages[Math.floor(Math.random() * balloonImages.length)];
+      balloon.style.position = 'fixed';
+      balloon.style.bottom = '-100px';
+      balloon.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+      balloon.style.width = '50px';
+      balloon.style.height = '70px';
+      balloon.style.zIndex = '9999';
+      balloon.style.pointerEvents = 'none';
+      balloon.style.filter = 'drop-shadow(0 0 3px #ff69b4)';
+      balloonContainer.appendChild(balloon);
+
+      // Animate balloon upwards
+      const duration = 5000 + Math.random() * 3000;
+      balloon.animate([
+        { transform: `translateY(0)` },
+        { transform: `translateY(-${window.innerHeight + 100}px)` }
+      ], {
+        duration: duration,
+        easing: 'ease-out',
+        fill: 'forwards'
+      });
+
+      // Remove balloon after animation
+      setTimeout(() => {
+        balloon.remove();
+      }, duration);
+    }
+
+    // Show popup with cake, message, letter, and music
+    function showBirthdayPopup() {
+      // Create overlay
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100vw';
+      overlay.style.height = '100vh';
+      overlay.style.backgroundColor = 'rgba(0,0,0,0.85)';
+      overlay.style.display = 'flex';
+      overlay.style.flexDirection = 'column';
+      overlay.style.justifyContent = 'center';
+      overlay.style.alignItems = 'center';
+      overlay.style.zIndex = '10001';
+      overlay.style.color = 'white';
+      overlay.style.textAlign = 'center';
+      overlay.style.padding = '20px';
+      overlay.style.overflowY = 'auto';
+
+      // Confetti on popup
+      createConfetti();
+
+      // Cake image
+      const cakeImg = document.createElement('img');
+      cakeImg.src = 'https://i.pinimg.com/1200x/c5/3c/7b/c53c7bed49bb902b78bb00ae980e5ef9.jpg'; // Replace with your cake image URL
+      cakeImg.alt = 'Birthday Cake';
+      cakeImg.style.width = '200px';
+      cakeImg.style.marginBottom = '20px';
+      cakeImg.style.borderRadius = '20px';
+      cakeImg.style.boxShadow = '0 0 20px #ff69b4';
+
+      // Surprise message
+      const surprise = document.createElement('div');
+      surprise.innerHTML = '<h1 style="font-family: \'Luckiest Guy\', cursive; font-size: 3rem; color: #ff69b4;">🎉 SURPRISE! 🎂</h1>';
+      surprise.style.marginBottom = '20px';
+
+      // Custom letter container
+      const letterContainer = document.createElement('div');
+      letterContainer.innerHTML = customLetter;
+      letterContainer.style.marginBottom = '30px';
+
+      // Close button
+      const closeBtn = document.createElement('button');
+      closeBtn.textContent = 'Close';
+      closeBtn.style.fontSize = '1.2rem';
+      closeBtn.style.padding = '10px 20px';
+      closeBtn.style.borderRadius = '30px';
+      closeBtn.style.border = 'none';
+      closeBtn.style.backgroundColor = '#ff69b4';
+      closeBtn.style.color = 'white';
+      closeBtn.style.cursor = 'pointer';
+      closeBtn.style.boxShadow = '0 0 10px #ff69b4';
+      closeBtn.style.transition = 'background-color 0.3s ease';
+      closeBtn.onmouseover = () => closeBtn.style.backgroundColor = '#ff4c9a';
+      closeBtn.onmouseout = () => closeBtn.style.backgroundColor = '#ff69b4';
+
+      closeBtn.onclick = () => {
+        overlay.remove();
+        // Stop music
+        if (audio) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      };
+
+      // Append elements
+      overlay.appendChild(cakeImg);
+      overlay.appendChild(surprise);
+      overlay.appendChild(letterContainer);
+      overlay.appendChild(closeBtn);
+      document.body.appendChild(overlay);
+
+      // Play birthday music
+      audio.play();
+    }
+
+    // Button click event
+    button.addEventListener('click', () => {
+      clickCount++;
+      counterDisplay.textContent = `Clicks: ${clickCount}`;
+
+      // Show surprise message after 1 click
+      if (clickCount === 1) {
+        surpriseMessage.style.display = 'block';
+      }
+
+      // Create confetti and balloon on each click
+      createConfetti();
+      createBalloon();
+
+      // On 1st click, show popup with music, cake, letter, and surprise
+      if (clickCount === 1) {
+        showBirthdayPopup();
+      }
+    });
+
+    // Confetti fall animation keyframes
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = `
+    @keyframes confetti-fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  `;
+    document.head.appendChild(styleSheet);
+  </script>
+
+</body>
+<style>
+  .surprise-message {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    margin-top: 20px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .happy {
+      letter-spacing: 0.5rem;
+    }
+
+    .birthday {
+      letter-spacing: 0.2rem;
+    }
+
+    .name {
+      padding: 12px 30px;
+    }
+  }
+
+  .counter {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    margin-top: 30px;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100dvh;
+    /* background images */
+    background-image: url('https://i.pinimg.com/736x/be/3f/0c/be3f0c826ce96a2368874b4ca32b3f13.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  header {
+    text-align: center;
+    /* center ALL header text */
+  }
+
+  .happy {
+    font-family: 'Jersey 20', cursive;
+    color: rgb(255, 255, 255);
+    margin: 0 auto;
+    font-size: 10rem;
+    letter-spacing: 1.5cm;
+    text-size-adjust: 100%;
+    animation: glow 0.4s ease-in-out infinite alternate;
+    overflow-x: hidden;
+    text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.9);
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 20px #8ee7cb, 0 0 30px #065631, 0 0 40px #3912bc;
+    }
+
+    to {
+      text-shadow: 0 0 20px #ea6b6b, 0 0 30px #9c19c4, 0 0 40px #ff85e1;
+    }
+  }
+
+  .birthday {
+    margin-top: 0;
+    font-size: 6rem;
+    letter-spacing: 0.5cm;
+    font-style: italic;
+    width: auto;
+    height: auto;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 3px 3px 2px rgba(223, 91, 115, 0.9);
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    padding: 0px;
+    animation: shrink 0.9s ease-in-out infinite alternate;
+  }
+
+  @keyframes shrink {
+    from {
+      transform: scale(1.5);
+    }
+
+    to {
+      transform: scale(0.98);
+    }
+  }
+
+  .name {
+    background: radial-gradient(circle, rgba(231, 230, 249, 0.886), rgba(234, 229, 229, 0.5));
+    border: none;
+    font-size: 1.9rem;
+    color: white;
+    font: bold 40px 'Bebas Neue', sans-serif;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    padding: 20px 40px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 0;
+    transition: all 0.3s ease;
+    line-height: 1;
+    border-radius: 100px;
+    transition: all 0.3s;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 1);
+    text-shadow: 3px 3px 5px rgba(0, 1, 1, 10);
+  }
+
+  .name:hover {
+    background-color: rgb(16, 91, 46);
+    opacity: 0.9;
+    color: beige;
+    transform: translateY(-3px);
+  }
+
+  .name:active {
+    transform: translateY(0);
+    background-color: rgb(0, 16, 74);
+  }
+</style>
+
+
+</html>
+
+
